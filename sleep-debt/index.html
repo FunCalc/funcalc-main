@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sleep Debt Calculator - Find Out Your Deficit | funcalc.fun</title>
+    <meta name="description" content="Calculate your total sleep debt instantly. Find out how many hours of sleep you need to catch up on to feel fully rested!"/>
+    
+    <style>
+        :root { --primary-color: #2e86de; --bg-light: #f4f6f9; }
+        body { font-family: Arial, sans-serif; background-color: var(--bg-light); margin: 0; padding-top: 20px;}
+        .container { max-width: 700px; margin: 0 auto; padding: 30px; background-color: white; border-radius: 10px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);}
+        h1 { color: var(--primary-color); text-align: center; margin-bottom: 25px;}
+        .input-group { margin-bottom: 20px;}
+        label { display: block; margin-bottom: 8px; font-weight: bold;}
+        input[type="number"] { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;}
+        button { background-color: #ff6b6b; color: white; padding: 14px 25px; border: none; border-radius: 6px; cursor: pointer; font-size: 17px; width: 100%;}
+        #result { margin-top: 30px; padding: 20px; border-radius: 8px; font-size: 1.2em; text-align: center; border: 2px solid #ddd; font-weight: bold;}
+        .share-cta { margin-top: 20px; text-align: center;}
+        .share-cta a { background-color: #1DA1F2; color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none; margin: 0 5px; display: inline-block;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>😴 Sleep Debt Calculator</h1>
+
+        <div class="input-group">
+            <label for="required">1. Hours of Sleep Required (e.g., 7 or 8)</label>
+            <input type="number" id="required" placeholder="Hours" required value="7">
+        </div>
+
+        <div class="input-group">
+            <label for="actual">2. Hours You Actually Slept Last Night</label>
+            <input type="number" id="actual" placeholder="Hours" required>
+        </div>
+        
+        <button onclick="calculateDebt()">Calculate My Sleep Debt</button>
+
+        <div id="result">
+            <p>Your Sleep Debt: 0 Hours</p>
+        </div>
+
+        <div class="share-cta">
+            <a id="share-link" href="#" target="_blank">Share My Sleep Debt on Twitter</a>
+        </div>
+        
+        <div style="margin-top: 30px; text-align: center;">
+            <p style="color: gray; border: 1px dashed gray; padding: 10px;">[AD SENSE SPACE: High Traffic Ads Here]</p>
+        </div>
+    </div>
+
+    <script>
+        function calculateDebt() {
+            const required = parseFloat(document.getElementById('required').value);
+            const actual = parseFloat(document.getElementById('actual').value);
+            const resultDiv = document.getElementById('result');
+            const debt = required - actual;
+
+            let message = '';
+            let color = '#2e86de';
+
+            if (debt > 0) {
+                color = '#ff6b6b';
+                message = `⚠️ **Alert!** Your Sleep Debt is <strong>${debt.toFixed(1)} hours</strong>. Time to catch up!`;
+            } else if (debt < 0) {
+                color = '#28a745';
+                message = `✅ **Great!** You have a Sleep Surplus of <strong>${Math.abs(debt).toFixed(1)} hours</strong>.`;
+            } else {
+                message = "Perfect! Your Sleep Debt is 0 hours.";
+            }
+
+            resultDiv.style.borderColor = color;
+            resultDiv.innerHTML = `<p style="color: ${color};">${message}</p>`;
+
+            // Social Sharing Link
+            const shareText = `My Sleep Debt is ${debt.toFixed(1)} hours! Check yours here: funcalc.fun/sleep-debt/`;
+            document.getElementById('share-link').href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
+        }
+    </script>
+</body>
+</html>
