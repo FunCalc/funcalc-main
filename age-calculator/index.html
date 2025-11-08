@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exact Age Calculator by Date of Birth | funcalc.fun</title>
+    <style>
+        :root { --primary-color: #007bff; }
+        body { font-family: Arial, sans-serif; background-color: #f4f6f9; line-height: 1.6; margin: 0; padding-top: 20px;}
+        .container { max-width: 600px; margin: 0 auto; padding: 30px; background-color: white; border-radius: 10px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);}
+        h1 { color: var(--primary-color); text-align: center; margin-bottom: 25px;}
+        .input-group { margin-bottom: 20px;}
+        input[type="date"] { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 16px;}
+        button { background-color: var(--primary-color); color: white; padding: 14px 25px; border: none; border-radius: 6px; cursor: pointer; font-size: 17px; width: 100%;}
+        #result { margin-top: 30px; padding: 20px; border-radius: 8px; font-size: 1.2em; text-align: center; border: 2px solid #ddd; font-weight: bold;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎂 Age Calculator</h1>
+        <p style="text-align: center;">Calculate your exact age in years, months, and days.</p>
+
+        <div class="input-group">
+            <label for="dob">Enter Your Date of Birth</label>
+            <input type="date" id="dob" required>
+        </div>
+        
+        <button onclick="calculateAge()">Calculate Age</button>
+
+        <div id="result">
+            <p>Your Age: 0 years</p>
+        </div>
+    </div>
+
+    <script>
+        function calculateAge() {
+            const dob = document.getElementById('dob').value;
+            if (!dob) {
+                document.getElementById('result').innerHTML = '<p style="color: red;">Please select a date of birth.</p>';
+                return;
+            }
+
+            const birthDate = new Date(dob);
+            const today = new Date();
+
+            let years = today.getFullYear() - birthDate.getFullYear();
+            let months = today.getMonth() - birthDate.getMonth();
+            let days = today.getDate() - birthDate.getDate();
+
+            if (days < 0) {
+                months--;
+                days += new Date(today.getFullYear(), today.getMonth(), 0).getDate();
+            }
+            if (months < 0) {
+                years--;
+                months += 12;
+            }
+
+            document.getElementById('result').innerHTML = `
+                <p style="color: ${years > 0 ? 'var(--primary-color)' : '#333'};">
+                    Your Exact Age is: <strong>${years}</strong> years, <strong>${months}</strong> months, and <strong>${days}</strong> days.
+                </p>`;
+        }
+    </script>
+    <div style="text-align: center; padding: 30px 0; border-top: 1px solid #eee; margin-top: 60px; font-size: 0.9em; color: #666;">
+        <p>&copy; 2025 funcalc.fun. All Rights Reserved.</p>
+        <p>
+            <a href="https://funcalc.fun/privacy.html">Privacy Policy</a> | 
+            <a href="https://funcalc.fun/about.html">About Us</a> |
+            <a href="https://funcalc.fun/contact.html">Contact</a>
+        </p>
+    </div>
+</body>
+</html>
