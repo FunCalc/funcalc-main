@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ideal Weight Range Calculator by Height and Gender | funcalc.fun</title>
+    <style>/* Basic styling */</style>
+</head>
+<body>
+    <div class="container"><h1>⚖️ Ideal Weight Range Calculator</h1>
+        <p>Find the scientifically proven healthy weight range for your height and gender.</p>
+        <div><label>Height (cm)</label><input type="number" id="height" value="175"></div>
+        <div><label>Gender</label><select id="gender"><option value="male">Male</option><option value="female">Female</option></select></div>
+        <button onclick="calculateIdealWeight()">Calculate Range</button>
+        <div id="result"></div>
+    </div>
+    <script>
+        function calculateIdealWeight() {
+            const H = parseFloat(document.getElementById('height').value);
+            const G = document.getElementById('gender').value;
+            
+            if (isNaN(H) || H <= 0) {
+                document.getElementById('result').innerHTML = '<p style="color: red;">Please enter valid height.</p>';
+                return;
+            }
+
+            const H_inch = H / 2.54;
+            let lowRange, highRange;
+
+            // Simple Devine Formula for Ideal Weight (Highly searched method)
+            if (G === 'male') {
+                const baseWeight = 50; // kg for first 5 feet (60 inches)
+                const extraWeight = Math.max(0, H_inch - 60) * 2.3; // 2.3 kg for each inch over 5 feet
+                lowRange = baseWeight + extraWeight - 5;
+                highRange = baseWeight + extraWeight + 5;
+            } else { // Female
+                const baseWeight = 45.5; // kg for first 5 feet
+                const extraWeight = Math.max(0, H_inch - 60) * 2.3;
+                lowRange = baseWeight + extraWeight - 5;
+                highRange = baseWeight + extraWeight + 5;
+            }
+            
+            document.getElementById('result').innerHTML = `<p style="color: #34a853;">Your Ideal Weight Range is: <strong>${lowRange.toFixed(1)} kg - ${highRange.toFixed(1)} kg</strong></p>`;
+        }
+    </script>
+    <div style="text-align: center; padding: 30px 0; border-top: 1px solid #eee; margin-top: 60px;">
+        <a href="https://funcalc.fun/privacy.html">Privacy Policy</a>
+    </div>
+</body></html>
