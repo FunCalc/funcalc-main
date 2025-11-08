@@ -2,121 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BMI Calculator: Find Your Body Mass Index (BMI) & Ideal Weight Range | funcalc.fun</title>
-    <meta name="description" content="Calculate your Body Mass Index (BMI) instantly. See if you are underweight, normal, overweight, or obese according to worldwide health standards."/>
-    
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "HealthAndBeautyBusiness",
-      "name": "BMI Calculator",
-      "description": "Calculate and assess your body mass index instantly.",
-      "url": "https://funcalc.fun/bmi-calculator/index.html",
-      "serviceType": "Body Mass Index Calculation",
-      "keywords": "BMI calculator, Body Mass Index, ideal weight calculator, health calculator"
-    }
-    </script>
-    
-    <style>
-        :root { 
-            --primary-color: #34a853; /* Health Green */
-            --warning-orange: #ff9800;
-            --danger-red: #f44336;
-        }
-        body { font-family: 'Roboto', Arial, sans-serif; background-color: #f4f6f9; line-height: 1.6; margin: 0; padding-top: 20px;}
-        .container { max-width: 650px; margin: 0 auto; padding: 30px; background-color: white; border-radius: 10px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);}
-        h1 { color: var(--primary-color); text-align: center; margin-bottom: 25px; font-size: 1.8em;}
-        .input-group { margin-bottom: 20px;}
-        label { display: block; margin-bottom: 8px; font-weight: bold;}
-        input[type="number"] { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 16px;}
-        button { background-color: var(--primary-color); color: white; padding: 14px 25px; border: none; border-radius: 6px; cursor: pointer; font-size: 17px; width: 100%; transition: background-color 0.3s;}
-        button:hover { background-color: #2c9447;}
-        #result { margin-top: 30px; padding: 25px; border-radius: 8px; font-size: 1.2em; text-align: center; border: 2px dashed #ddd; font-weight: bold; background-color: #e6ffed;}
-        .seo-content { margin-top: 50px; border-top: 1px solid #eee; padding-top: 30px;}
-        .seo-content h2 { color: var(--primary-color);}
-    </style>
+    <title>BMI Calculator: Find Your Body Mass Index (BMI) | funcalc.fun</title>
+    <style>/* Master Theme CSS here */</style>
 </head>
 <body>
     <div class="container">
         <h1>🧍 World-Class BMI Calculator</h1>
-        <p style="text-align: center;">Find your Body Mass Index (BMI) and health category instantly.</p> 
-
-        <div class="input-group">
-            <label for="weight">Weight (kg)</label>
-            <input type="number" id="weight" placeholder="e.g., 70" required>
-        </div>
-
-        <div class="input-group">
-            <label for="height">Height (cm)</label>
-            <input type="number" id="height" placeholder="e.g., 175" required>
-        </div>
-        
+        <div class="input-group"><label>Weight (kg)</label><input type="number" id="weight" placeholder="e.g., 70"></div>
+        <div class="input-group"><label>Height (cm)</label><input type="number" id="height" placeholder="e.g., 175"></div>
         <button onclick="calculateBMI()">Calculate BMI</button>
+        <div id="result"><p>Your BMI: 0</p></div>
 
-        <div id="result">
-            <p>Your BMI: 0</p>
-        </div>
+        <div class="ad-slot">[ADSENSE SLOT: High Volume Health Ad]</div>
+
+        <div class="seo-content"><h2>Why Use This BMI Calculator?</h2></div>
     </div>
-
     <script>
         function calculateBMI() {
-            const weightKg = parseFloat(document.getElementById('weight').value);
-            const heightCm = parseFloat(document.getElementById('height').value);
-            const resultDiv = document.getElementById('result');
-
-            if (isNaN(weightKg) || isNaN(heightCm) || weightKg <= 0 || heightCm <= 0) {
-                resultDiv.innerHTML = '<p style="color: red;">Please enter valid weight and height.</p>';
-                return;
-            }
-
-            const heightM = heightCm / 100;
-            const bmi = weightKg / (heightM * heightM);
-
-            let category = '';
-            let color = 'var(--primary-color)';
-
+            const W = parseFloat(document.getElementById('weight').value);
+            const H = parseFloat(document.getElementById('height').value);
+            if (isNaN(W) || isNaN(H) || W <= 0 || H <= 0) return;
+            const bmi = W / Math.pow((H / 100), 2);
+            let category; let color;
             if (bmi < 18.5) { category = 'Underweight'; color = '#ffc107'; }
-            else if (bmi >= 18.5 && bmi < 24.9) { category = 'Normal Weight'; color = 'var(--primary-color)'; }
-            else if (bmi >= 25 && bmi < 29.9) { category = 'Overweight'; color = 'var(--warning-orange)'; }
-            else { category = 'Obese'; color = 'var(--danger-red)'; }
-
-            resultDiv.style.borderColor = color;
-            resultDiv.innerHTML = `
-                <p style="color: ${color};">Your BMI is <strong>${bmi.toFixed(2)}</strong> (${category})</p>
-                <p style="font-size: 0.9em; color: #666;">Standard Range: 18.5 - 24.9</p>
-                `;
+            else if (bmi >= 18.5 && bmi < 24.9) { category = 'Normal Weight'; color = '#34a853'; }
+            else { category = 'Obese'; color = '#f44336'; }
+            document.getElementById('result').innerHTML = `<p style="color: ${color};">Your BMI is: <strong>${bmi.toFixed(2)}</strong> (${category})</p>`;
         }
     </script>
-
-    <div class="seo-content container">
-        <h2>How funcalc.fun BMI Calculator helps you rank on Google Top?</h2>
-        <p>To dominate health searches, we use precise medical formulas and provide immediate value. This is the first step in creating a **Topic Cluster** around health (BMI, Calorie Needs, Heart Rate).</p>
-        
-        <h3>BMI Calculator Formula (World Health Organization)</h3>
-        <p>The calculation is based on the standard WHO formula: **weight (kg) / [height (m)]²**. We use a professional design and fast code to give a superior user experience.</p>
-        
-        <h3>BMI Category Chart (FAQs for Search)</h3>
-        <table style="width: 100%; text-align: left; border-collapse: collapse; margin-top: 15px;">
-            <tr style="background-color: #eee;"><th>Category</th><th>BMI Range</th></tr>
-            <tr><td>Underweight</td><td>Below 18.5</td></tr>
-            <tr style="background-color: #f0fff0;"><td>Normal Weight</td><td>18.5 – 24.9</td></tr>
-            <tr><td>Overweight</td><td>25.0 – 29.9</td></tr>
-            <tr style="background-color: #fff0f0;"><td>Obesity</td><td>30.0 and Above</td></tr>
-        </table>
-        
-        <div style="margin-top: 30px; text-align: center; color: gray; border: 1px dashed #ccc; padding: 15px;">
-            [AD SENSE SPACE: High Volume Health Ads Here]
-        </div>
-    </div>
-    
-    <div style="text-align: center; padding: 30px 0; border-top: 1px solid #eee; margin-top: 60px; font-size: 0.9em; color: #666;">
-        <p>&copy; 2025 funcalc.fun. All Rights Reserved.</p>
-        <p>
-            <a href="https://funcalc.fun/privacy.html">Privacy Policy</a> | 
-            <a href="https://funcalc.fun/about.html">About Us</a> |
-            <a href="https://funcalc.fun/contact.html">Contact</a>
-        </p>
-    </div>
+    <div style="text-align: center; padding: 30px 0; border-top: 1px solid #eee; margin-top: 60px;"><a href="../privacy.html">Privacy Policy</a></div>
 </body>
+</html>
 </html>
