@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Body Fat Percentage Estimator (BMI Method) | funcalc.fun</title>
+    <style>
+        :root { --primary-color: #34a853; } /* Health Green */
+        /* ... (Styling remains the same for cleaner viewing) ... */
+        body { font-family: Arial, sans-serif; background-color: #f4f6f9; line-height: 1.6; margin: 0; padding-top: 20px;}
+        .container { max-width: 600px; margin: 0 auto; padding: 30px; background-color: white; border-radius: 10px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);}
+        h1 { color: var(--primary-color); text-align: center; margin-bottom: 25px;}
+        .input-group { margin-bottom: 20px;}
+        label { display: block; margin-bottom: 8px; font-weight: bold;}
+        input, select { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 16px;}
+        button { background-color: var(--primary-color); color: white; padding: 14px 25px; border: none; border-radius: 6px; cursor: pointer; font-size: 17px; width: 100%;}
+        #result { margin-top: 30px; padding: 20px; border-radius: 8px; font-size: 1.2em; text-align: center; border: 2px solid #ddd; font-weight: bold;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>💪 Body Fat Percentage Estimator</h1>
+        <p style="text-align: center;">Estimate your body fat percentage using age, gender, and BMI.</p>
+
+        <div class="input-group"><label for="bmi">Your BMI (Use BMI Calculator First)</label><input type="number" id="bmi" placeholder="e.g., 22.5" required></div>
+        <div class="input-group"><label for="age">Age</label><input type="number" id="age" placeholder="e.g., 30" required></div>
+        <div class="input-group"><label for="gender">Gender</label><select id="gender"><option value="male">Male</option><option value="female">Female</option></select></div>
+        
+        <button onclick="calculateBodyFat()">Calculate Body Fat</button>
+
+        <div id="result"><p>Body Fat %: 0</p></div>
+    </div>
+
+    <script>
+        function calculateBodyFat() {
+            const bmi = parseFloat(document.getElementById('bmi').value);
+            const age = parseFloat(document.getElementById('age').value);
+            const gender = document.getElementById('gender').value;
+            const resultDiv = document.getElementById('result');
+
+            if (isNaN(bmi) || isNaN(age)) {
+                resultDiv.innerHTML = '<p style="color: red;">Enter valid BMI and Age.</p>';
+                return;
+            }
+
+            // Deurenberg formula (Highly used method)
+            let bodyFat = (1.20 * bmi) + (0.23 * age) - 10.8 - 5.4; // Base formula
+            if (gender === 'male') { bodyFat = bodyFat + 0; } // Male adjustment factor is -5.4
+            else { bodyFat = bodyFat - 10; } // Female adjustment is different (10.8 - 5.4)
+
+            // Final Formula using standard constants:
+            if (gender === 'male') { bodyFat = (1.20 * bmi) + (0.23 * age) - 16.2; }
+            else { bodyFat = (1.20 * bmi) + (0.23 * age) - 5.4; }
+
+            resultDiv.innerHTML = `<p style="color: #34a853;">Estimated Body Fat is: <strong>${bodyFat.toFixed(1)}%</strong></p>`;
+        }
+    </script>
+    <div style="text-align: center; padding: 30px 0; border-top: 1px solid #eee; margin-top: 60px;">
+        <a href="https://funcalc.fun/privacy.html">Privacy Policy</a>
+    </div>
+</body>
+</html>
