@@ -1,25 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Daily Calorie Needs Calculator (BMR) - Find Your Maintenance Calories | funcalc.fun</title>
-    <meta name="description" content="Calculate your Basal Metabolic Rate (BMR) and daily calorie needs based on age, weight, height, and gender for weight management."/>
-    
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "HealthAndBeautyBusiness",
-      "name": "Daily Calorie Needs Calculator",
-      "description": "Calculates basal metabolic rate (BMR) and calorie needs.",
-      "keywords": "calorie calculator, BMR, daily calorie needs, weight management"
-    }
-    </script>
-    </head>
+<head><title>Daily Calorie Needs Calculator (BMR) | funcalc.fun</title><style> /* Master Theme CSS here */ </style></head>
 <body>
-    <div style="text-align: center; padding: 30px 0; border-top: 1px solid #eee; margin-top: 60px;">
-        <p>This tool uses the internationally recognized Mifflin-St Jeor equation for BMR calculation. For best results, always consult a healthcare professional.</p>
-        <a href="https://funcalc.fun/privacy.html">Privacy Policy</a> | 
-        <a href="https://funcalc.fun/about.html">About Us</a>
+    <div class="container">
+        <h1>🔥 Daily Calorie Needs Calculator</h1>
+        <input type="number" id="weight" placeholder="Weight (kg)">
+        <input type="number" id="height" placeholder="Height (cm)">
+        <input type="number" id="age" placeholder="Age">
+        <select id="gender"><option value="male">Male</option><option value="female">Female</option></select>
+        <button onclick="calculateBMR()">Calculate Calories</button>
+        <div id="result"><p>Maintenance Calories: 0</p></div>
+        <div class="ad-slot">[ADSENSE SLOT 2: Health Ad]</div>
+        <div class="seo-content"><h2>Mifflin-St Jeor Equation Explained</h2></div>
     </div>
+    <script>
+        function calculateBMR() {
+            const W = parseFloat(document.getElementById('weight').value);
+            const H = parseFloat(document.getElementById('height').value);
+            const A = parseFloat(document.getElementById('age').value);
+            const G = document.getElementById('gender').value;
+            let BMR;
+            if (G === 'male') { BMR = 88.362 + (13.397 * W) + (4.799 * H) - (5.677 * A); }
+            else { BMR = 447.593 + (9.247 * W) + (3.098 * H) - (4.330 * A); }
+            document.getElementById('result').innerHTML = `<p style="color: #34a853;">Maintenance Calories: <strong>${BMR.toFixed(0)} kcal/day</strong></p>`;
+        }
+    </script>
+    <div style="text-align: center; padding: 30px 0; border-top: 1px solid #eee; margin-top: 60px;"><a href="../privacy.html">Privacy Policy</a></div>
 </body>
 </html>
