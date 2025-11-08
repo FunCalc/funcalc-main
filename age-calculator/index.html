@@ -2,40 +2,58 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Exact Age Calculator by Date of Birth | funcalc.fun</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exact Age Calculator: Find Age in Years, Months, Days, & Seconds | funcalc.fun</title>
+    <meta name="description" content="Calculate your precise age in years, months, days, hours, and seconds from any date of birth. Our worldwide accurate tool accounts for all leap years."/>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Exact Age Calculator by Date of Birth",
+      "description": "Calculate your precise age in years, months, days, hours, and seconds.",
+      "url": "https://funcalc.fun/age-calculator/index.html",
+      "keywords": "age calculator, exact age, age by date of birth, age in days, worldwide age tool, age in seconds"
+    }
+    </script>
+    
     <style>
         :root { --primary-color: #007bff; }
-        body { font-family: Arial, sans-serif; background-color: #f4f6f9; line-height: 1.6; margin: 0; padding-top: 20px;}
-        .container { max-width: 600px; margin: 0 auto; padding: 30px; background-color: white; border-radius: 10px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);}
-        h1 { color: var(--primary-color); text-align: center; margin-bottom: 25px;}
-        .input-group { margin-bottom: 20px;}
+        body { font-family: 'Roboto', Arial, sans-serif; background-color: #f4f6f9; line-height: 1.6; margin: 0; padding-top: 20px;}
+        .container { max-width: 650px; margin: 0 auto; padding: 30px; background-color: white; border-radius: 10px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);}
+        h1 { color: var(--primary-color); text-align: center; margin-bottom: 25px; font-size: 1.8em;}
+        .input-group { margin-bottom: 25px;}
+        label { display: block; margin-bottom: 8px; font-weight: bold;}
         input[type="date"] { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 16px;}
-        button { background-color: var(--primary-color); color: white; padding: 14px 25px; border: none; border-radius: 6px; cursor: pointer; font-size: 17px; width: 100%;}
-        #result { margin-top: 30px; padding: 20px; border-radius: 8px; font-size: 1.2em; text-align: center; border: 2px solid #ddd; font-weight: bold;}
+        button { background-color: var(--primary-color); color: white; padding: 14px 25px; border: none; border-radius: 6px; cursor: pointer; font-size: 17px; width: 100%; transition: background-color 0.3s;}
+        button:hover { background-color: #0056b3;}
+        #result { margin-top: 30px; padding: 25px; border-radius: 8px; font-size: 1.2em; text-align: center; border: 2px dashed #ddd; font-weight: bold; background-color: #e6f7ff;}
+        .seo-content { margin-top: 50px; border-top: 1px solid #eee; padding-top: 30px;}
+        .seo-content h2, .seo-content h3 { color: #333;}
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🎂 Age Calculator</h1>
-        <p style="text-align: center;">Calculate your exact age in years, months, and days.</p>
+        <h1>🎂 Exact Age Calculator by Date of Birth</h1>
 
         <div class="input-group">
             <label for="dob">Enter Your Date of Birth</label>
             <input type="date" id="dob" required>
         </div>
         
-        <button onclick="calculateAge()">Calculate Age</button>
+        <button onclick="calculateAge()">Calculate Exact Age</button>
 
         <div id="result">
-            <p>Your Age: 0 years</p>
+            <p>Your Age will be shown here in years, months, and days.</p>
         </div>
     </div>
 
     <script>
         function calculateAge() {
             const dob = document.getElementById('dob').value;
+            const resultDiv = document.getElementById('result');
             if (!dob) {
-                document.getElementById('result').innerHTML = '<p style="color: red;">Please select a date of birth.</p>';
+                resultDiv.innerHTML = '<p style="color: red;">Please select a date of birth.</p>';
                 return;
             }
 
@@ -55,12 +73,33 @@
                 months += 12;
             }
 
-            document.getElementById('result').innerHTML = `
-                <p style="color: ${years > 0 ? 'var(--primary-color)' : '#333'};">
+            // Calculate age in seconds (for advanced SEO content)
+            const ageInMilliseconds = today - birthDate;
+            const ageInSeconds = Math.floor(ageInMilliseconds / 1000);
+
+            resultDiv.innerHTML = `
+                <p style="color: #007bff;">
                     Your Exact Age is: <strong>${years}</strong> years, <strong>${months}</strong> months, and <strong>${days}</strong> days.
-                </p>`;
+                </p>
+                <small style="color:#666;">Total time elapsed: ${ageInSeconds.toLocaleString('en-IN')} seconds.</small>
+                `;
         }
     </script>
+
+    <div class="seo-content container">
+        <h2>Why Use This Exact Age Calculator?</h2>
+        <p>Google ke Top par aane ke liye, hum sirf saal nahi, baki units bhi dete hain. Hamara tool **Leap Years** aur **Timezone** ko dhyaan mein rakhte hue bilkul accurate age nikalta hai. Worldwide searches ke liye yeh functionality best hai.</p>
+        
+        <h3>Age Calculator FAQ (Google's People Also Ask)</h3>
+        <p><strong>Q: Is this age calculator accurate for leap years?</strong> A: Yes, our tool automatically adjusts for all leap year days, ensuring 100% accuracy.</p>
+        <p><strong>Q: How can I calculate my age in seconds?</strong> A: Our calculator gives you the precise calculation, useful for scientific projects or milestone tracking.</p>
+        <p><strong>Q: Does knowing my age in days matter?</strong> A: Yes, it is often used for legal documentation, insurance policy planning, and calculating final retirement dates.</p>
+        
+        <div style="margin-top: 30px; text-align: center; color: gray; border: 1px dashed #ccc; padding: 15px;">
+            [AD SENSE SPACE: High Volume Ads Here]
+        </div>
+    </div>
+    
     <div style="text-align: center; padding: 30px 0; border-top: 1px solid #eee; margin-top: 60px; font-size: 0.9em; color: #666;">
         <p>&copy; 2025 funcalc.fun. All Rights Reserved.</p>
         <p>
