@@ -1,117 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sleep Debt Calculator: Find Your Sleep Deficit & Catch-Up Time | funcalc.fun</title>
-    <meta name="description" content="Calculate your total sleep debt instantly by comparing required sleep vs. actual sleep. Share your results and start recovering your energy!"/>
-    
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Calculator",
-      "name": "Sleep Debt Calculator",
-      "description": "Calculates the total deficit of sleep based on input hours.",
-      "keywords": "sleep debt calculator, sleep deficit, catch up sleep, sleep health"
-    }
-    </script>
-    
-    <style>
-        :root { 
-            --primary-color: #2e86de; /* Sleep Blue */
-            --danger-color: #ff6b6b;
-            --bg-light: #f4f6f9;
-        }
-        body { font-family: 'Roboto', Arial, sans-serif; line-height: 1.6; background-color: var(--bg-light); margin: 0; padding-top: 20px;}
-        .container { max-width: 650px; margin: 0 auto; padding: 30px; background-color: white; border-radius: 10px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);}
-        h1 { color: var(--primary-color); text-align: center; margin-bottom: 25px; font-size: 1.8em;}
-        .input-group { margin-bottom: 20px;}
-        label { display: block; margin-bottom: 8px; font-weight: bold;}
-        input[type="number"] { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 16px;}
-        button { background-color: var(--danger-color); color: white; padding: 14px 25px; border: none; border-radius: 6px; cursor: pointer; font-size: 17px; width: 100%; transition: background-color 0.3s;}
-        button:hover { background-color: #e85555;}
-        #result { margin-top: 30px; padding: 25px; border-radius: 8px; font-size: 1.2em; text-align: center; border: 2px dashed #ddd; font-weight: bold; background-color: #f0f8ff;}
-        .share-cta { margin-top: 20px; text-align: center;}
-        .share-cta a { background-color: #1DA1F2; color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none; margin: 0 5px; display: inline-block; font-weight: bold;}
-        .seo-content { margin-top: 50px; border-top: 1px solid #eee; padding-top: 30px;}
-        .seo-content h2 { color: var(--primary-color);}
-    </style>
+<html lang="en"><head><title>Sleep Debt Calculator: Find Your Sleep Deficit | funcalc.fun</title>
+    <style>/* CSS variables for colors: FINAL CONSISTENT THEME */
+:root { 
+    --primary-color: #00a878; /* Health Green */
+    --secondary-color: #1a73e8; /* Blue (Buttons/Action) */
+    --bg-light: #f4f6f9; 
+    --text-dark: #202124;
+    --box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+/* Base and Layout Styles */
+body { font-family: 'Roboto', Arial, sans-serif; line-height: 1.6; background-color: var(--bg-light); color: var(--text-dark); margin: 0; padding-top: 50px;}
+.container { max-width: 650px; margin: 0 auto; padding: 30px; background-color: white; border-radius: 12px; box-shadow: var(--box-shadow);}
+h1 { color: var(--primary-color); text-align: center; margin-bottom: 25px; font-size: 2em; border-bottom: 2px solid #eee; padding-bottom: 10px;}
+/* Input and Button Styles */
+input[type="number"], select { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box;}
+button { background-color: var(--secondary-color); color: white; padding: 14px 25px; border: none; border-radius: 8px; cursor: pointer; width: 100%; font-weight: bold; transition: background-color 0.3s;}
+button:hover { background-color: #1555a0;}
+/* Result Area Styling (PROMPT STYLES) */
+#result { margin-top: 30px; padding: 25px; border-radius: 8px; font-size: 1.3em; text-align: center; border: 2px solid var(--primary-color); background-color: #e0f7fa; color: var(--primary-color);}
+/* Ad and SEO Slots */
+.ad-slot { margin: 20px 0; border: 1px dashed #ff9800; padding: 15px; text-align: center; background-color: #fffde7;}
+.affiliate-cta { background-color: #e6fff0; border: 1px solid var(--primary-color); padding: 15px; border-radius: 8px; margin: 20px 0; text-align: center;}
+.affiliate-cta a { color: var(--secondary-color); text-decoration: underline; font-weight: bold;}
+.input-group { margin-bottom: 20px; }
+.seo-content { margin-top: 50px; border-top: 1px solid #eee; padding-top: 30px;}
+
+/* Custom styles for specific tools (e.g., if BMI is Obese) will be added to the JS */</style>
 </head>
 <body>
     <div class="container">
         <h1>😴 Sleep Debt Calculator</h1>
-        <p style="text-align: center;">Calculate your total sleep debt and see how many hours you owe yourself.</p>
-
-        <div class="input-group">
-            <label for="required">1. Hours of Sleep Required (e.g., 7 or 8)</label>
-            <input type="number" id="required" placeholder="Hours" required value="7">
-        </div>
-
-        <div class="input-group">
-            <label for="actual">2. Hours You Actually Slept Last Night</label>
-            <input type="number" id="actual" placeholder="Hours" required>
-        </div>
-        
+        <div class="ad-slot">[ADSENSE SLOT 2: Above Tool Ad Unit]</div>
+        <div class="input-group"><label>Hours of Sleep Required</label><input type="number" id="required" value="7"></div>
+        <div class="input-group"><label>Hours You Actually Slept</label><input type="number" id="actual" required></div>
         <button onclick="calculateDebt()">Calculate My Sleep Debt</button>
-
-        <div id="result">
-            <p>Your Sleep Debt: 0 Hours</p>
-        </div>
-
-        <div class="share-cta">
-            <a id="share-link" href="#" target="_blank">Share My Sleep Debt on Twitter</a>
-        </div>
+        <div id="result"><p>Your Sleep Debt: 0 Hours</p></div>
+        <div class="seo-content"><h2>What is Sleep Debt and Why Should I Calculate It?</h2></div>
     </div>
-
-    <script>
-        function calculateDebt() {
-            const required = parseFloat(document.getElementById('required').value);
-            const actual = parseFloat(document.getElementById('actual').value);
-            const resultDiv = document.getElementById('result');
-            const debt = required - actual;
-
-            let message = '';
-            let color = '#2e86de';
-
-            if (debt > 0) {
-                color = var(--danger-color);
-                message = `⚠️ **Alert!** Your Sleep Debt is <strong>${debt.toFixed(1)} hours</strong>. Time to catch up!`;
-            } else if (debt < 0) {
-                color = '#28a745';
-                message = `✅ **Great!** You have a Sleep Surplus of <strong>${Math.abs(debt).toFixed(1)} hours</strong>.`;
-            } else {
-                message = "Perfect! Your Sleep Debt is 0 hours.";
-            }
-
-            resultDiv.style.borderColor = color;
-            resultDiv.innerHTML = `<p style="color: ${color};">${message}</p>`;
-
-            // Social Sharing Link Logic (VIRALITY)
-            const shareText = `OMG! My Sleep Debt is ${debt.toFixed(1)} hours! Find out yours here: https://funcalc.fun/sleep-debt/`;
-            document.getElementById('share-link').href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
-        }
-    </script>
-
-    <div class="seo-content container">
-        <h2>What is Sleep Debt and Why Should I Calculate It?</h2>
-        <p>Sleep debt (or sleep deficit) is the accumulated difference between the amount of sleep you need and the amount you actually get. According to sleep scientists, having chronic sleep debt can severely impact your health and focus.</p>
-        
-        <h3>FAQ: Recovering From Sleep Debt</h3>
-        <p><strong>Q: How much sleep debt can I safely have?</strong> A: Experts recommend keeping your accumulated sleep debt below 10 hours, but zero debt is ideal. Use this tool daily!</p>
-        <p><strong>Q: Can I catch up on sleep debt?</strong> A: Yes, you can recover gradually, often by adding an extra hour of sleep on non-work days. Use our calculator to track your progress.</p>
-
-        <div style="margin-top: 30px; text-align: center; color: gray; border: 1px dashed #ccc; padding: 15px;">
-            [AD SENSE SPACE: High Volume Health Ads Here]
-        </div>
-    </div>
-    
-    <div style="text-align: center; padding: 30px 0; border-top: 1px solid #eee; margin-top: 60px; font-size: 0.9em; color: #666;">
-        <p>&copy; 2025 funcalc.fun. All Rights Reserved.</p>
-        <p>
-            <a href="https://funcalc.fun/privacy.html">Privacy Policy</a> | 
-            <a href="https://funcalc.fun/about.html">About Us</a> |
-            <a href="https://funcalc.fun/contact.html">Contact</a>
-        </p>
-    </div>
+    <script> /* Sleep Debt Calculation Logic */ </script>
+    <div style="text-align: center; padding: 30px 0; border-top: 1px solid #eee; margin-top: 60px;"><a href="../../privacy.html">Privacy Policy</a></div>
 </body>
 </html>
