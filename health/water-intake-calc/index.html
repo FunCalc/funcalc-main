@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Daily Water Intake Calculator (ML/Ounces) | funcalc.fun</title>
+    <style>
+        :root { --primary-color: #2e86de; } /* Water Blue */
+        /* ... (Styling remains the same for cleaner viewing) ... */
+        body { font-family: Arial, sans-serif; background-color: #f4f6f9; line-height: 1.6; margin: 0; padding-top: 20px;}
+        .container { max-width: 600px; margin: 0 auto; padding: 30px; background-color: white; border-radius: 10px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);}
+        h1 { color: var(--primary-color); text-align: center; margin-bottom: 25px;}
+        .input-group { margin-bottom: 20px;}
+        label { display: block; margin-bottom: 8px; font-weight: bold;}
+        input[type="number"] { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 16px;}
+        button { background-color: var(--primary-color); color: white; padding: 14px 25px; border: none; border-radius: 6px; cursor: pointer; font-size: 17px; width: 100%;}
+        #result { margin-top: 30px; padding: 20px; border-radius: 8px; font-size: 1.2em; text-align: center; border: 2px solid #ddd; font-weight: bold;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>💧 Daily Water Intake Calculator</h1>
+        <p style="text-align: center;">Calculate how much water you need based on your weight.</p>
+
+        <div class="input-group"><label for="weight">Weight (kg)</label><input type="number" id="weight" placeholder="e.g., 70" required></div>
+        
+        <button onclick="calculateWater()">Calculate Intake</button>
+
+        <div id="result"><p>Recommended Intake: 0 ml</p></div>
+    </div>
+
+    <script>
+        function calculateWater() {
+            const W = parseFloat(document.getElementById('weight').value);
+            const resultDiv = document.getElementById('result');
+
+            if (isNaN(W) || W <= 0) {
+                resultDiv.innerHTML = '<p style="color: red;">Enter valid weight.</p>';
+                return;
+            }
+
+            // Simple formula: 35 ml per kg of body weight (Standard health recommendation)
+            const waterML = W * 35; 
+            const waterOz = waterML / 29.574; // Convert ML to Ounces
+            
+            resultDiv.innerHTML = `<p style="color: #2e86de;">Recommended Intake: <strong>${waterML.toFixed(0)} ml</strong></p>
+                <p style="font-size: 0.9em;">(Approx. ${waterOz.toFixed(1)} fluid ounces)</p>`;
+        }
+    </script>
+    <div style="text-align: center; padding: 30px 0; border-top: 1px solid #eee; margin-top: 60px;">
+        <a href="https://funcalc.fun/privacy.html">Privacy Policy</a>
+    </div>
+</body>
+</html>
