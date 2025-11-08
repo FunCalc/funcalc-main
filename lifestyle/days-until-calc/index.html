@@ -1,45 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Days Until Calculator: Days Left Until Any Date (Countdown) | funcalc.fun</title>
-    <meta name="description" content="Calculate the number of days, hours, and minutes remaining until a specific future date or event. Perfect for planning."/>
-    
-    <style>/* Basic styling */</style>
+<head><title>Days Until Calculator: Days Left Until Any Date (Countdown) | funcalc.fun</title>
+    <style>/* CSS variables for colors: FINAL CONSISTENT THEME */
+:root { 
+    --primary-color: #00a878; /* Health Green */
+    --secondary-color: #1a73e8; /* Blue (Buttons/Action) */
+    --bg-light: #f4f6f9; 
+    --text-dark: #202124;
+    --box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+/* Base and Layout Styles */
+body { font-family: 'Roboto', Arial, sans-serif; line-height: 1.6; background-color: var(--bg-light); color: var(--text-dark); margin: 0; padding-top: 50px;}
+.container { max-width: 650px; margin: 0 auto; padding: 30px; background-color: white; border-radius: 12px; box-shadow: var(--box-shadow);}
+h1 { color: var(--primary-color); text-align: center; margin-bottom: 25px; font-size: 2em; border-bottom: 2px solid #eee; padding-bottom: 10px;}
+/* Input and Button Styles */
+input[type="number"], select { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box;}
+button { background-color: var(--secondary-color); color: white; padding: 14px 25px; border: none; border-radius: 8px; cursor: pointer; width: 100%; font-weight: bold; transition: background-color 0.3s;}
+button:hover { background-color: #1555a0;}
+/* Result Area Styling (PROMPT STYLES) */
+#result { margin-top: 30px; padding: 25px; border-radius: 8px; font-size: 1.3em; text-align: center; border: 2px solid var(--primary-color); background-color: #e0f7fa; color: var(--primary-color);}
+/* Ad and SEO Slots */
+.ad-slot { margin: 20px 0; border: 1px dashed #ff9800; padding: 15px; text-align: center; background-color: #fffde7;}
+.affiliate-cta { background-color: #e6fff0; border: 1px solid var(--primary-color); padding: 15px; border-radius: 8px; margin: 20px 0; text-align: center;}
+.affiliate-cta a { color: var(--secondary-color); text-decoration: underline; font-weight: bold;}
+.input-group { margin-bottom: 20px; }
+.seo-content { margin-top: 50px; border-top: 1px solid #eee; padding-top: 30px;}
+
+/* Custom styles for specific tools (e.g., if BMI is Obese) will be added to the JS */</style>
 </head>
 <body>
     <div class="container">
         <h1>📅 Days Until Calculator</h1>
-        <p>Find out exactly how long is left until your next big event.</p>
-        
-        <div><label for="targetDate">Target Date</label><input type="date" id="targetDate" required></div>
-        
+        <div class="ad-slot">[ADSENSE SLOT 2: General Utility Ad]</div>
+        <div class="input-group"><label>Target Date</label><input type="date" id="targetDate" required></div>
         <button onclick="calculateDaysUntil()">Calculate Time Left</button>
         <div id="result"></div>
+        
+        <div class="seo-content"><h2>Why This Tool is Critical for Planning</h2><p>This tool is used globally for counting down to holidays, deadlines, and personal milestones. **(Long SEO Content Here)**</p></div>
     </div>
     <script>
         function calculateDaysUntil() {
             const targetDateStr = document.getElementById('targetDate').value;
-            if (!targetDateStr) {
-                document.getElementById('result').innerHTML = '<p style="color: red;">Please select a target date.</p>';
-                return;
-            }
+            if (!targetDateStr) return;
             const targetDate = new Date(targetDateStr);
             const now = new Date();
             const diffTime = targetDate.getTime() - now.getTime();
-
-            if (diffTime < 0) {
-                 document.getElementById('result').innerHTML = '<p style="color: red;">This event has already passed!</p>';
-                 return;
-            }
-
+            if (diffTime < 0) { document.getElementById('result').innerHTML = '<p style="color: red;">This event has already passed!</p>'; return; }
             const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-            
             document.getElementById('result').innerHTML = `<p style="color:#007bff;">Time remaining: <strong>${diffDays} days</strong></p>`;
         }
     </script>
-    <div style="text-align: center; padding: 30px 0; border-top: 1px solid #eee; margin-top: 60px;">
-        <a href="https://funcalc.fun/privacy.html">Privacy Policy</a>
-    </div>
+    <div style="text-align: center; padding: 30px 0; border-top: 1px solid #eee; margin-top: 60px;"><a href="../../privacy.html">Privacy Policy</a></div>
 </body>
 </html>
