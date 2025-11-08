@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Body Mass Index (BMI) Calculator | funcalc.fun</title>
+    <style>
+        :root { --primary-color: #34a853; } /* Health Green */
+        body { font-family: Arial, sans-serif; background-color: #f4f6f9; line-height: 1.6; margin: 0; padding-top: 20px;}
+        .container { max-width: 600px; margin: 0 auto; padding: 30px; background-color: white; border-radius: 10px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);}
+        h1 { color: var(--primary-color); text-align: center; margin-bottom: 25px;}
+        .input-group { margin-bottom: 20px;}
+        label { display: block; margin-bottom: 8px; font-weight: bold;}
+        input[type="number"] { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;}
+        button { background-color: var(--primary-color); color: white; padding: 14px 25px; border: none; border-radius: 6px; cursor: pointer; font-size: 17px; width: 100%;}
+        #result { margin-top: 30px; padding: 20px; border-radius: 8px; font-size: 1.2em; text-align: center; border: 2px solid #ddd; font-weight: bold;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧍 BMI Calculator</h1>
+        <p style="text-align: center;">Find your Body Mass Index (BMI) instantly.</p>
+
+        <div class="input-group">
+            <label for="weight">Weight (kg)</label>
+            <input type="number" id="weight" placeholder="e.g., 70" required>
+        </div>
+
+        <div class="input-group">
+            <label for="height">Height (cm)</label>
+            <input type="number" id="height" placeholder="e.g., 175" required>
+        </div>
+        
+        <button onclick="calculateBMI()">Calculate BMI</button>
+
+        <div id="result">
+            <p>Your BMI: 0</p>
+        </div>
+    </div>
+
+    <script>
+        function calculateBMI() {
+            const weightKg = parseFloat(document.getElementById('weight').value);
+            const heightCm = parseFloat(document.getElementById('height').value);
+            const resultDiv = document.getElementById('result');
+
+            if (isNaN(weightKg) || isNaN(heightCm) || weightKg <= 0 || heightCm <= 0) {
+                resultDiv.innerHTML = '<p style="color: red;">Please enter valid weight and height.</p>';
+                return;
+            }
+
+            const heightM = heightCm / 100;
+            const bmi = weightKg / (heightM * heightM);
+
+            let category = '';
+            let color = '#333';
+
+            if (bmi < 18.5) { category = 'Underweight'; color = '#ffc107'; }
+            else if (bmi >= 18.5 && bmi < 24.9) { category = 'Normal Weight'; color = '#34a853'; }
+            else if (bmi >= 25 && bmi < 29.9) { category = 'Overweight'; color = '#ff9800'; }
+            else { category = 'Obese'; color = '#f44336'; }
+
+            resultDiv.style.borderColor = color;
+            resultDiv.innerHTML = `<p style="color: ${color};">Your BMI is <strong>${bmi.toFixed(2)}</strong> (${category})</p>`;
+        }
+    </script>
+    <div style="text-align: center; padding: 30px 0; border-top: 1px solid #eee; margin-top: 60px; font-size: 0.9em; color: #666;">
+        <p>&copy; 2025 funcalc.fun. All Rights Reserved.</p>
+        <p>
+            <a href="https://funcalc.fun/privacy.html">Privacy Policy</a> | 
+            <a href="https://funcalc.fun/about.html">About Us</a> |
+            <a href="https://funcalc.fun/contact.html">Contact</a>
+        </p>
+    </div>
+</body>
+</html>
