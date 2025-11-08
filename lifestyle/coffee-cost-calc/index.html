@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Coffee Cost Calculator: Lifetime Spend Estimator | funcalc.fun</title>
+    <meta name="description" content="Calculate exactly how much money you spend on coffee daily, monthly, and over your lifetime. Highly viral and engaging."/>
+    
+    <style> /* Styling */ </style>
+</head>
+<body>
+    <div class="container">
+        <h1>☕ Lifetime Coffee Cost Calculator</h1>
+        <p>Find out the true cost of your daily coffee habit.</p>
+        
+        <div><label>Cost per Cup (₹)</label><input type="number" id="cost" value="100"></div>
+        <div><label>Cups per Week</label><input type="number" id="cups" value="5"></div>
+        
+        <button onclick="calculateCoffee()">Calculate Lifetime Cost</button>
+        <div id="result"></div>
+
+        <div class="seo-content">
+            <h2>Why This Tool is Viral</h2>
+            <p>This tool hits a personal finance nerve. Sharing results encourages virality.</p>
+        </div>
+    </div>
+    <script>
+        function calculateCoffee() {
+            const cost = parseFloat(document.getElementById('cost').value);
+            const cups = parseFloat(document.getElementById('cups').value);
+            const yearly = cost * cups * 52;
+            const lifetime = yearly * 40; // 40 years estimate
+            document.getElementById('result').innerHTML = `<p>Yearly Spend: ₹${yearly.toLocaleString()}</p><p style="color:#ff6b6b;">Lifetime Spend (40 Yrs): <strong>₹${lifetime.toLocaleString()}</strong></p>`;
+        }
+    </script>
+    <div style="text-align: center; padding: 30px 0; border-top: 1px solid #eee; margin-top: 60px;">
+        <a href="https://funcalc.fun/privacy.html">Privacy Policy</a>
+    </div>
+</body>
+</html>
