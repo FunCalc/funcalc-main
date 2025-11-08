@@ -2,36 +2,109 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Retirement Age and Date Estimator | funcalc.fun</title>
-    <meta name="description" content="Estimate your retirement age and date based on your current age, savings goal, and annual contribution rate. High-CPC financial tool."/>
+    <meta name="description" content="Estimate your realistic retirement age based on current savings, annual contributions, and desired savings goal. Essential financial planning tool."/>
     
-    <style> /* Styling */ </style>
+    <style>
+       /* CSS variables for colors: FINAL CONSISTENT THEME */
+:root { 
+    --primary-color: #00a878; /* Health Green */
+    --secondary-color: #1a73e8; /* Blue (Buttons/Action) */
+    --bg-light: #f4f6f9; 
+    --text-dark: #202124;
+    --box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+/* Base and Layout Styles */
+body { font-family: 'Roboto', Arial, sans-serif; line-height: 1.6; background-color: var(--bg-light); color: var(--text-dark); margin: 0; padding-top: 50px;}
+.container { max-width: 650px; margin: 0 auto; padding: 30px; background-color: white; border-radius: 12px; box-shadow: var(--box-shadow);}
+h1 { color: var(--primary-color); text-align: center; margin-bottom: 25px; font-size: 2em; border-bottom: 2px solid #eee; padding-bottom: 10px;}
+/* Input and Button Styles */
+input[type="number"], select { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box;}
+button { background-color: var(--secondary-color); color: white; padding: 14px 25px; border: none; border-radius: 8px; cursor: pointer; width: 100%; font-weight: bold; transition: background-color 0.3s;}
+button:hover { background-color: #1555a0;}
+/* Result Area Styling (PROMPT STYLES) */
+#result { margin-top: 30px; padding: 25px; border-radius: 8px; font-size: 1.3em; text-align: center; border: 2px solid var(--primary-color); background-color: #e0f7fa; color: var(--primary-color);}
+/* Ad and SEO Slots */
+.ad-slot { margin: 20px 0; border: 1px dashed #ff9800; padding: 15px; text-align: center; background-color: #fffde7;}
+.affiliate-cta { background-color: #e6fff0; border: 1px solid var(--primary-color); padding: 15px; border-radius: 8px; margin: 20px 0; text-align: center;}
+.affiliate-cta a { color: var(--secondary-color); text-decoration: underline; font-weight: bold;}
+.input-group { margin-bottom: 20px; }
+.seo-content { margin-top: 50px; border-top: 1px solid #eee; padding-top: 30px;}
+
+/* Custom styles for specific tools (e.g., if BMI is Obese) will be added to the JS */
+    </style>
 </head>
 <body>
     <div class="container">
         <h1>💸 Retirement Age Estimator</h1>
-        <p>Calculate when you can realistically retire based on your investment strategy.</p>
         
-        <div><label>Current Age</label><input type="number" id="current_age" value="30"></div>
-        <div><label>Current Savings (₹)</label><input type="number" id="savings" value="500000"></div>
-        <div><label>Annual Contribution (₹)</label><input type="number" id="contribution" value="100000"></div>
+        <div class="ad-slot">[ADSENSE SLOT 2: High CPC Finance Ad]</div>
+
+        <p style="text-align: center;">Estimate when you can realistically retire based on your investment strategy.</p>
+
+        <div class="input-group"><label for="current_age">Current Age</label><input type="number" id="current_age" value="30" required></div>
+        <div class="input-group"><label for="savings">Current Savings (₹)</label><input type="number" id="savings" value="500000" required></div>
+        <div class="input-group"><label for="contribution">Annual Contribution (₹)</label><input type="number" id="contribution" value="100000" required></div>
+        <div class="input-group"><label for="rate">Annual Growth Rate (%)</label><input type="number" id="rate" value="10" required></div>
+        <div class="input-group"><label for="goal">Retirement Goal (₹)</label><input type="number" id="goal" value="20000000" required></div>
         
-        <button onclick="calculateRetirement()">Estimate Retirement</button>
+        <button onclick="calculateRetirement()">Estimate Retirement Date</button>
         <div id="result"></div>
+        
+        <div class="affiliate-cta">
+            <p><strong>Optimize Your Wealth:</strong> Start investing smarter today!</p>
+            <a href="[YOUR_BROKERAGE_AFFILIATE_LINK]" target="_blank">Find The Best Investment Platform (Affiliate Link)</a>
+        </div>
 
         <div class="seo-content">
-            <h2>High-CPC Finance Tool</h2>
-            <p>This tool is essential for attracting high-value users interested in financial planning, brokerage accounts, and wealth management.</p>
+            <h2>Why This Tool is Key for Financial Planning</h2>
+            <p>This high-value tool uses iterative calculations to estimate the number of years required to reach your financial goal, attracting high-CPC financial users. **(Long SEO Content Here)**</p>
         </div>
     </div>
+
     <script>
         function calculateRetirement() {
-            // (Simple JS logic for estimation - Actual code will be complex)
-            document.getElementById('result').innerHTML = `<p style="color:#1a73e8;">Your Estimated Retirement Age is: <strong>58 Years</strong></p><p>This requires complex calculation. Full logic coming soon!</p>`;
+            let currentAge = parseFloat(document.getElementById('current_age').value);
+            let savings = parseFloat(document.getElementById('savings').value);
+            const contribution = parseFloat(document.getElementById('contribution').value);
+            const rate = parseFloat(document.getElementById('rate').value) / 100;
+            const goal = parseFloat(document.getElementById('goal').value);
+            const resultDiv = document.getElementById('result');
+
+            if (isNaN(currentAge) || isNaN(savings) || isNaN(contribution) || isNaN(rate) || isNaN(goal)) {
+                 resultDiv.innerHTML = '<p style="color: red;">Please enter valid financial data.</p>';
+                 return;
+            }
+
+            let yearsToRetirement = 0;
+            let currentBalance = savings;
+            const maxYears = 60; // Max age 90 (60 years from age 30)
+
+            while (currentBalance < goal && yearsToRetirement < maxYears) {
+                // Compound the existing balance + add new contribution
+                currentBalance = currentBalance * (1 + rate) + contribution;
+                yearsToRetirement++;
+            }
+            
+            const retirementAge = currentAge + yearsToRetirement;
+            const retirementYear = new Date().getFullYear() + yearsToRetirement;
+
+            if (yearsToRetirement >= maxYears) {
+                 resultDiv.innerHTML = `<p style="color: red;">Goal is unreachable by age 90 with current contributions.</p>`;
+            } else {
+                 resultDiv.innerHTML = `<p style="color: var(--secondary-color);">Estimated Retirement Age: <strong>${retirementAge} years old</strong></p>
+                    <p style="font-size: 0.9em;">(Estimated Year: ${retirementYear})</p>`;
+            }
         }
     </script>
-    <div style="text-align: center; padding: 30px 0; border-top: 1px solid #eee; margin-top: 60px;">
-        <a href="https://funcalc.fun/privacy.html">Privacy Policy</a>
+
+    <div style="text-align: center; padding: 30px 0; border-top: 1px solid #eee; margin-top: 60px; font-size: 0.9em; color: #666;">
+        <p>&copy; 2025 funcalc.fun. All Rights Reserved.</p>
+        <p>
+            <a href="../../privacy.html">Privacy Policy</a> | 
+            <a href="../../about.html">About Us</a>
+        </p>
     </div>
 </body>
 </html>
