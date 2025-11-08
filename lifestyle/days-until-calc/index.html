@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Days Until Calculator: Days Left Until Any Date (Countdown) | funcalc.fun</title>
+    <meta name="description" content="Calculate the number of days, hours, and minutes remaining until a specific future date or event. Perfect for planning."/>
+    
+    <style>/* Basic styling */</style>
+</head>
+<body>
+    <div class="container">
+        <h1>📅 Days Until Calculator</h1>
+        <p>Find out exactly how long is left until your next big event.</p>
+        
+        <div><label for="targetDate">Target Date</label><input type="date" id="targetDate" required></div>
+        
+        <button onclick="calculateDaysUntil()">Calculate Time Left</button>
+        <div id="result"></div>
+    </div>
+    <script>
+        function calculateDaysUntil() {
+            const targetDateStr = document.getElementById('targetDate').value;
+            if (!targetDateStr) {
+                document.getElementById('result').innerHTML = '<p style="color: red;">Please select a target date.</p>';
+                return;
+            }
+            const targetDate = new Date(targetDateStr);
+            const now = new Date();
+            const diffTime = targetDate.getTime() - now.getTime();
+
+            if (diffTime < 0) {
+                 document.getElementById('result').innerHTML = '<p style="color: red;">This event has already passed!</p>';
+                 return;
+            }
+
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            
+            document.getElementById('result').innerHTML = `<p style="color:#007bff;">Time remaining: <strong>${diffDays} days</strong></p>`;
+        }
+    </script>
+    <div style="text-align: center; padding: 30px 0; border-top: 1px solid #eee; margin-top: 60px;">
+        <a href="https://funcalc.fun/privacy.html">Privacy Policy</a>
+    </div>
+</body>
+</html>
