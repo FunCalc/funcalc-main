@@ -1,29 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Working Hours Calculator (Time Between Two Times) | funcalc.fun</title>
-    <meta name="description" content="Calculate the total hours and minutes between a start time and an end time. Useful for timesheets and tracking productivity."/>
-    
-    <style> /* Styling */ </style>
+<head><title>Working Hours Calculator (Time Between Two Times) | funcalc.fun</title>
+    <style> /* CSS variables for colors: FINAL CONSISTENT THEME */
+:root { 
+    --primary-color: #00a878; /* Health Green */
+    --secondary-color: #1a73e8; /* Blue (Buttons/Action) */
+    --bg-light: #f4f6f9; 
+    --text-dark: #202124;
+    --box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+/* Base and Layout Styles */
+body { font-family: 'Roboto', Arial, sans-serif; line-height: 1.6; background-color: var(--bg-light); color: var(--text-dark); margin: 0; padding-top: 50px;}
+.container { max-width: 650px; margin: 0 auto; padding: 30px; background-color: white; border-radius: 12px; box-shadow: var(--box-shadow);}
+h1 { color: var(--primary-color); text-align: center; margin-bottom: 25px; font-size: 2em; border-bottom: 2px solid #eee; padding-bottom: 10px;}
+/* Input and Button Styles */
+input[type="number"], select { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box;}
+button { background-color: var(--secondary-color); color: white; padding: 14px 25px; border: none; border-radius: 8px; cursor: pointer; width: 100%; font-weight: bold; transition: background-color 0.3s;}
+button:hover { background-color: #1555a0;}
+/* Result Area Styling (PROMPT STYLES) */
+#result { margin-top: 30px; padding: 25px; border-radius: 8px; font-size: 1.3em; text-align: center; border: 2px solid var(--primary-color); background-color: #e0f7fa; color: var(--primary-color);}
+/* Ad and SEO Slots */
+.ad-slot { margin: 20px 0; border: 1px dashed #ff9800; padding: 15px; text-align: center; background-color: #fffde7;}
+.affiliate-cta { background-color: #e6fff0; border: 1px solid var(--primary-color); padding: 15px; border-radius: 8px; margin: 20px 0; text-align: center;}
+.affiliate-cta a { color: var(--secondary-color); text-decoration: underline; font-weight: bold;}
+.input-group { margin-bottom: 20px; }
+.seo-content { margin-top: 50px; border-top: 1px solid #eee; padding-top: 30px;}
+
+/* Custom styles for specific tools (e.g., if BMI is Obese) will be added to the JS */ </style>
 </head>
 <body>
     <div class="container">
         <h1>⏱️ Working Hours Calculator</h1>
-        <p>Calculate total time elapsed between start and end times.</p>
+        <div class="ad-slot">[ADSENSE SLOT 2: Productivity Ad]</div>
+        <div class="input-group"><label>Start Time</label><input type="time" required></div>
+        <div class="input-group"><label>End Time</label><input type="time" required></div>
+        <button onclick="alert('Logic Coming Soon!')">Calculate Hours</button>
+        <div id="result"><p>Total Hours Worked: 0</p></div>
         
-        <div><label>Start Time</label><input type="time" required></div>
-        <div><label>End Time</label><input type="time" required></div>
+        <div class="affiliate-cta"><a href="[YOUR_TIME_TRACKING_AFFILIATE_LINK]" target="_blank">Track Time Smarter with Toggl/Clockify (Affiliate Link)</a></div>
         
-        <button onclick="alert('Full logic coming soon! This requires time difference calculation.')">Calculate Hours</button>
-        <div id="result"></div>
-
-        <div class="seo-content">
-            <p>This attracts business users and productivity search volume.</p>
-        </div>
+        <div class="seo-content"><h2>Why This Tool Boosts Productivity Search</h2></div>
     </div>
-    <div style="text-align: center; padding: 30px 0; border-top: 1px solid #eee; margin-top: 60px;">
-        <a href="https://funcalc.fun/privacy.html">Privacy Policy</a>
-    </div>
+    <div style="text-align: center; padding: 30px 0; border-top: 1px solid #eee; margin-top: 60px;"><a href="../../privacy.html">Privacy Policy</a></div>
 </body>
 </html>
